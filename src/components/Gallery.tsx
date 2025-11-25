@@ -1,33 +1,39 @@
 import { useEffect, useRef, useState } from 'react';
+import image2 from '../assets/image-2.jpeg';
+import image3 from '../assets/image-3.jpeg';
+import image4 from '../assets/image-4.jpeg';
+import image5 from '../assets/image-5.jpeg';
+import image6 from '../assets/image-6.jpeg';
+import image7 from '../assets/image-7.jpeg';
 
 const images = [
   {
-    url: 'https://images.pexels.com/photos/3354648/pexels-photo-3354648.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: image2,
     alt: 'Detalhamento exterior',
     size: 'large',
   },
   {
-    url: 'https://images.pexels.com/photos/3354888/pexels-photo-3354888.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: image3,
     alt: 'Lavagem premium',
     size: 'medium',
   },
   {
-    url: 'https://images.pexels.com/photos/3354650/pexels-photo-3354650.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: image4,
     alt: 'Polimento técnico',
     size: 'medium',
   },
   {
-    url: 'https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: image5,
     alt: 'Interior premium',
     size: 'large',
   },
   {
-    url: '"C:/Users/kakao/Downloads/WhatsApp Image 2025-11-25 at 11.08.21.jpeg"',
+    url: image6,
     alt: 'Detalhes externos',
     size: 'medium',
   },
   {
-    url: 'https://images.pexels.com/photos/3354651/pexels-photo-3354651.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: image7,
     alt: 'Acabamento perfeito',
     size: 'medium',
   },

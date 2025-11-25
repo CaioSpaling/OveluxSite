@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import aboutImage from '../assets/image-1.jpeg';
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false);
@@ -56,7 +57,7 @@ export default function About() {
           <div className="relative h-[500px] md:h-[600px]">
             <div className="absolute inset-0 bg-gray-200">
               <img
-                src="https://images.pexels.com/photos/3972755/pexels-photo-3972755.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src={aboutImage}
                 alt="Interior de carro premium"
                 className="w-full h-full object-cover"
               />

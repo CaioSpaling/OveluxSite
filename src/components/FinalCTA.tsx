@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import finalCTAImage from '../assets/image-8.jpeg';
 
 export default function FinalCTA() {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,7 +35,7 @@ export default function FinalCTA() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://images.pexels.com/photos/3422964/pexels-photo-3422964.jpeg?auto=compress&cs=tinysrgb&w=1920')`,
+          backgroundImage: `url(${finalCTAImage})`,
         }}
       >
         <div className="absolute inset-0 bg-black/50" />
