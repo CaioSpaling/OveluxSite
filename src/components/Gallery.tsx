@@ -14,7 +14,6 @@ interface Media {
   alt: string;
 }
 
-// REMOVE fixed row-span/col-span to let grid auto-flow fill naturally
 const media: Media[] = [
   { type: 'video', src: videoTracker, alt: 'Tracker Ovelux' },
   { type: 'image', src: imageCivic, alt: 'Civic' },
@@ -101,13 +100,13 @@ export default function Gallery() {
           </p>
         </div>
 
-        {/* GRID REFEITA — AGORA AUTO-FLOW PARA AGRUPAR E EVITAR ESPAÇOS EM BRANCO */}
-        <div className="grid grid-cols-2 md:grid-cols-3 auto-rows-[200px] md:auto-rows-[280px] gap-4">
+        {/* CORREÇÃO: Removido aspect-square e ajustado o grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {media.map((item, index) => (
             <div
               key={index}
               ref={(el) => (itemsRef.current[index] = el)}
-              className={`relative overflow-hidden group cursor-pointer aspect-square
+              className={`relative overflow-hidden group cursor-pointer h-48 md:h-64 lg:h-80
                 transition-all duration-700
                 ${visibleItems[index] ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
             >
