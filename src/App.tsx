@@ -9,6 +9,7 @@ import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 
+
 function App() {
   return (
     <div className="min-h-screen bg-white">
