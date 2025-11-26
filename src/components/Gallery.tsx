@@ -1,57 +1,56 @@
 import { useEffect, useRef, useState } from 'react';
-import image2 from '../assets/image-2.jpeg';
-import image3 from '../assets/image-3.jpeg';
-import image4 from '../assets/image-4.jpeg';
-import image5 from '../assets/image-5.jpeg';
-import image6 from '../assets/image-6.jpeg';
-import image7 from '../assets/image-7.jpeg';
-import video1 from '../assets/CamaroOvelux.mp4';
-import video2 from '../assets/M3Ovelux.mp4';
-import video3 from '../assets/VolvoOvelux.mp4';
+
+// New imports from Midia folder
+import imageCivic from '../../Midia/Civic.jpeg';
+import videoM3 from '../../Midia/M3Ovelux.mp4';
+import imageSW4 from '../../Midia/SW4.jpg';
+import videoSW4 from '../../Midia/SW4Ovelux.mp4';
+import videoTracker from '../../Midia/TrackerOvelux.mp4';
+import imageVolvo from '../../Midia/Volvo.jpg';
 
 interface Media {
   type: 'image' | 'video';
   src: string;
   alt: string;
-  size: 'large' | 'medium';
+  layout: string; // For desktop grid classes
 }
 
 const media: Media[] = [
   {
+    type: 'video',
+    src: videoTracker,
+    alt: 'Tracker Ovelux',
+    layout: 'md:col-span-1 md:row-span-2',
+  },
+  {
     type: 'image',
-    src: image2,
-    alt: 'Detalhamento exterior',
-    size: 'large',
+    src: imageCivic,
+    alt: 'Civic',
+    layout: 'md:col-span-2 md:row-span-1',
   },
   {
     type: 'video',
-    src: video2,
+    src: videoM3,
     alt: 'M3 Ovelux',
-    size: 'medium',
+    layout: 'md:col-span-1 md:row-span-2',
   },
   {
     type: 'image',
-    src: image4,
-    alt: 'Polimento técnico',
-    size: 'medium',
+    src: imageSW4,
+    alt: 'SW4',
+    layout: 'md:col-span-1 md:row-span-1',
   },
   {
     type: 'video',
-    src: video1,
-    alt: 'Camaro Ovelux',
-    size: 'large',
+    src: videoSW4,
+    alt: 'SW4 Ovelux',
+    layout: 'md:col-span-1 md:row-span-1',
   },
   {
     type: 'image',
-    src: image6,
-    alt: 'Detalhes externos',
-    size: 'medium',
-  },
-  {
-    type: 'video',
-    src: video3,
-    alt: 'Volvo Ovelux',
-    size: 'medium',
+    src: imageVolvo,
+    alt: 'Volvo',
+    layout: 'md:col-span-2 md:row-span-1',
   },
 ];
 
@@ -136,7 +135,7 @@ export default function Gallery() {
             }, index * 150);
           }
         },
-        { threshold: 0.2 }
+        { threshold: 0.1 }
       );
 
       observer.observe(item);
@@ -160,20 +159,18 @@ export default function Gallery() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 md:grid-rows-3 gap-4">
           {media.map((item, index) => (
             <div
               key={index}
               ref={(el) => (itemsRef.current[index] = el)}
-              className={`relative overflow-hidden group cursor-pointer ${
-                item.size === 'large' ? 'md:col-span-2 md:row-span-2' : ''
+              className={`relative overflow-hidden group cursor-pointer aspect-square ${
+                item.layout
               } ${
                 visibleItems[index]
                   ? 'opacity-100 scale-100'
                   : 'opacity-0 scale-95'
-              } transition-all duration-700 ${
-                item.size === 'large' ? 'aspect-square' : 'aspect-[4/3]'
-              }`}
+              } transition-all duration-700`}
             >
               <div className="relative w-full h-full">
                 {item.type === 'image' ? (
