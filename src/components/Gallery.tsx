@@ -57,23 +57,55 @@ const media: Media[] = [
 
 const VideoPlayer = ({ src }: { src: string }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            // Autoplay was prevented.
+          });
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const handleMouseEnter = () => {
-    if (videoRef.current) {
-      videoRef.current.play();
+    const video = videoRef.current;
+    if (video) {
+      video.play().catch(() => {
+        // Autoplay was prevented.
+      });
     }
+    setIsHovering(true);
   };
 
   const handleMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
+    const video = videoRef.current;
+    if (video && !video.paused) {
+      video.pause();
     }
+    setIsHovering(false);
   };
 
   return (
     <video
       ref={videoRef}
       src={src}
+      autoPlay
       muted
       loop
       playsInline
