@@ -42,8 +42,7 @@ export default function Footer() {
                 href="#"
                 className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all"
               >
-                <Facebook size={20} />
-              </a>
+              
             </div>
           </div>
         </div>
