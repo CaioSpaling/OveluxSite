@@ -16,22 +16,7 @@ const services = [
     icon: Wind,
     title: 'Higienização Interna',
     description: 'Limpeza profunda do interior, eliminando odores e restaurando o aspecto original do veículo.',
-  },
-  {
-    icon: Star,
-    title: 'Polimento Técnico',
-    description: 'Remoção de riscos, hologramas e imperfeições, devolvendo o brilho de fábrica à pintura.',
-  },
-  {
-    icon: Gem,
-    title: 'Cristalização',
-    description: 'Tratamento que cria uma camada protetora cristalina, realçando o brilho e facilitando a manutenção.',
-  },
-  {
-    icon: Shield,
-    title: 'Vitrificação',
-    description: 'Proteção de longa duração que forma uma camada vítrea sobre a pintura, com durabilidade superior.',
-  },
+  }
 ];
 
 export default function Services() {
