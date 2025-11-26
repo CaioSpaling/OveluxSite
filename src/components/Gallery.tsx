@@ -5,53 +5,98 @@ import image4 from '../assets/image-4.jpeg';
 import image5 from '../assets/image-5.jpeg';
 import image6 from '../assets/image-6.jpeg';
 import image7 from '../assets/image-7.jpeg';
+import video1 from '../assets/CamaroOvelux.mp4';
+import video2 from '../assets/M3Ovelux.mp4';
+import video3 from '../assets/VolvoOvelux.mp4';
 
-const images = [
+interface Media {
+  type: 'image' | 'video';
+  src: string;
+  alt: string;
+  size: 'large' | 'medium';
+}
+
+const media: Media[] = [
   {
-    url: image2,
+    type: 'image',
+    src: image2,
     alt: 'Detalhamento exterior',
     size: 'large',
   },
   {
-    url: image3,
-    alt: 'Lavagem premium',
+    type: 'video',
+    src: video2,
+    alt: 'M3 Ovelux',
     size: 'medium',
   },
   {
-    url: image4,
+    type: 'image',
+    src: image4,
     alt: 'Polimento técnico',
     size: 'medium',
   },
   {
-    url: image5,
-    alt: 'Interior premium',
+    type: 'video',
+    src: video1,
+    alt: 'Camaro Ovelux',
     size: 'large',
   },
   {
-    url: image6,
+    type: 'image',
+    src: image6,
     alt: 'Detalhes externos',
     size: 'medium',
   },
   {
-    url: image7,
-    alt: 'Acabamento perfeito',
+    type: 'video',
+    src: video3,
+    alt: 'Volvo Ovelux',
     size: 'medium',
   },
 ];
 
+const VideoPlayer = ({ src }: { src: string }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
+
+  return (
+    <video
+      ref={videoRef}
+      src={src}
+      muted
+      loop
+      playsInline
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+    />
+  );
+};
+
 export default function Gallery() {
-  const [visibleImages, setVisibleImages] = useState<boolean[]>(new Array(images.length).fill(false));
-  const imagesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [visibleItems, setVisibleItems] = useState<boolean[]>(new Array(media.length).fill(false));
+  const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const observers = imagesRef.current.map((img, index) => {
-      if (!img) return null;
+    const observers = itemsRef.current.map((item, index) => {
+      if (!item) return null;
 
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
             setTimeout(() => {
-              setVisibleImages((prev) => {
+              setVisibleItems((prev) => {
                 const newState = [...prev];
                 newState[index] = true;
                 return newState;
@@ -62,7 +107,7 @@ export default function Gallery() {
         { threshold: 0.2 }
       );
 
-      observer.observe(img);
+      observer.observe(item);
       return observer;
     });
 
@@ -84,24 +129,30 @@ export default function Gallery() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {images.map((image, index) => (
+          {media.map((item, index) => (
             <div
               key={index}
-              ref={(el) => (imagesRef.current[index] = el)}
+              ref={(el) => (itemsRef.current[index] = el)}
               className={`relative overflow-hidden group cursor-pointer ${
-                image.size === 'large' ? 'md:col-span-2 md:row-span-2' : ''
+                item.size === 'large' ? 'md:col-span-2 md:row-span-2' : ''
               } ${
-                visibleImages[index]
+                visibleItems[index]
                   ? 'opacity-100 scale-100'
                   : 'opacity-0 scale-95'
-              } transition-all duration-700`}
+              } transition-all duration-700 ${
+                item.size === 'large' ? 'aspect-square' : 'aspect-[4/3]'
+              }`}
             >
-              <div className="relative h-64 md:h-80">
-                <img
-                  src={image.url}
-                  alt={image.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+              <div className="relative w-full h-full">
+                {item.type === 'image' ? (
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                ) : (
+                  <VideoPlayer src={item.src} />
+                )}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
               </div>
             </div>
