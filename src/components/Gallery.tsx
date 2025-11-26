@@ -12,51 +12,20 @@ interface Media {
   type: 'image' | 'video';
   src: string;
   alt: string;
-  layout: string; // For desktop grid classes
 }
 
+// REMOVE fixed row-span/col-span to let grid auto-flow fill naturally
 const media: Media[] = [
-  {
-    type: 'video',
-    src: videoTracker,
-    alt: 'Tracker Ovelux',
-    layout: 'md:col-span-1 md:row-span-2',
-  },
-  {
-    type: 'image',
-    src: imageCivic,
-    alt: 'Civic',
-    layout: 'md:col-span-2 md:row-span-1',
-  },
-  {
-    type: 'video',
-    src: videoM3,
-    alt: 'M3 Ovelux',
-    layout: 'md:col-span-1 md:row-span-2',
-  },
-  {
-    type: 'image',
-    src: imageSW4,
-    alt: 'SW4',
-    layout: 'md:col-span-1 md:row-span-1',
-  },
-  {
-    type: 'video',
-    src: videoSW4,
-    alt: 'SW4 Ovelux',
-    layout: 'md:col-span-1 md:row-span-1',
-  },
-  {
-    type: 'image',
-    src: imageVolvo,
-    alt: 'Volvo',
-    layout: 'md:col-span-2 md:row-span-1',
-  },
+  { type: 'video', src: videoTracker, alt: 'Tracker Ovelux' },
+  { type: 'image', src: imageCivic, alt: 'Civic' },
+  { type: 'video', src: videoM3, alt: 'M3 Ovelux' },
+  { type: 'image', src: imageSW4, alt: 'SW4' },
+  { type: 'video', src: videoSW4, alt: 'SW4 Ovelux' },
+  { type: 'image', src: imageVolvo, alt: 'Volvo' },
 ];
 
 const VideoPlayer = ({ src }: { src: string }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -65,9 +34,7 @@ const VideoPlayer = ({ src }: { src: string }) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          video.play().catch(() => {
-            // Autoplay was prevented.
-          });
+          video.play().catch(() => {});
         } else {
           video.pause();
         }
@@ -76,29 +43,8 @@ const VideoPlayer = ({ src }: { src: string }) => {
     );
 
     observer.observe(video);
-
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
-
-  const handleMouseEnter = () => {
-    const video = videoRef.current;
-    if (video) {
-      video.play().catch(() => {
-        // Autoplay was prevented.
-      });
-    }
-    setIsHovering(true);
-  };
-
-  const handleMouseLeave = () => {
-    const video = videoRef.current;
-    if (video && !video.paused) {
-      video.pause();
-    }
-    setIsHovering(false);
-  };
 
   return (
     <video
@@ -108,8 +54,6 @@ const VideoPlayer = ({ src }: { src: string }) => {
       muted
       loop
       playsInline
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
     />
   );
@@ -132,7 +76,7 @@ export default function Gallery() {
                 newState[index] = true;
                 return newState;
               });
-            }, index * 150);
+            }, index * 120);
           }
         },
         { threshold: 0.1 }
@@ -142,9 +86,7 @@ export default function Gallery() {
       return observer;
     });
 
-    return () => {
-      observers.forEach((observer) => observer?.disconnect());
-    };
+    return () => observers.forEach((obs) => obs?.disconnect());
   }, []);
 
   return (
@@ -159,31 +101,27 @@ export default function Gallery() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 md:grid-rows-3 gap-4">
+        {/* GRID REFEITA — AGORA AUTO-FLOW PARA AGRUPAR E EVITAR ESPAÇOS EM BRANCO */}
+        <div className="grid grid-cols-2 md:grid-cols-3 auto-rows-[200px] md:auto-rows-[280px] gap-4">
           {media.map((item, index) => (
             <div
               key={index}
               ref={(el) => (itemsRef.current[index] = el)}
-              className={`relative overflow-hidden group cursor-pointer aspect-square ${
-                item.layout
-              } ${
-                visibleItems[index]
-                  ? 'opacity-100 scale-100'
-                  : 'opacity-0 scale-95'
-              } transition-all duration-700`}
+              className={`relative overflow-hidden group cursor-pointer aspect-square
+                transition-all duration-700
+                ${visibleItems[index] ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
             >
-              <div className="relative w-full h-full">
-                {item.type === 'image' ? (
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                ) : (
-                  <VideoPlayer src={item.src} />
-                )}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
-              </div>
+              {item.type === 'image' ? (
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              ) : (
+                <VideoPlayer src={item.src} />
+              )}
+
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
             </div>
           ))}
         </div>
