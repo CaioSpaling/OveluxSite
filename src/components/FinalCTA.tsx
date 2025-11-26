@@ -23,7 +23,7 @@ export default function FinalCTA() {
   }, []);
 
   const handleContact = () => {
-    window.open('https://wa.me/5511999999999?text=Olá! Gostaria de agendar um serviço de estética automotiva.', '_blank');
+    window.open('https://wa.me/551999683-4667?text=Olá! Gostaria de agendar um serviço de estética automotiva.', '_blank');
   };
 
   return (
