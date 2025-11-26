@@ -29,10 +29,19 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-light mb-4 tracking-wide">Redes Sociais</h4>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all">
+              <a
+                href="https://www.instagram.com/oveluxautodetail/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="#" className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all">
+
+              <a
+                href="#"
+                className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all"
+              >
                 <Facebook size={20} />
               </a>
             </div>
