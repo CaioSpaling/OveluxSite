@@ -8,9 +8,9 @@ const testimonials = [
     content: 'Serviço impecável! A comodidade de ter o carro tratado na minha casa, com resultado profissional, não tem preço. Recomendo muito.',
   },
   {
-    name: 'João Victor Pacheco',
+    name: 'João Vitor Pacheco',
     role: 'Empresário',
-    content: 'Fiquei impressionada com o nível de detalhamento. Meu carro ficou melhor que novo. A equipe é extremamente profissional e atenciosa.',
+    content: 'Fiquei impressionado com o nível de detalhamento. Meu carro ficou melhor que novo. O serviço é extremamente profissional e cuidadoso.',
   },
   {
     name: 'Caio Spadotto',
