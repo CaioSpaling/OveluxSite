@@ -19,10 +19,6 @@ export default function Footer() {
                 <Phone size={18} />
                 <span>(19) 99683-4667 </span>
               </a>
-              <a href="mailto:contato@premiumauto.com" className="flex items-center gap-2 hover:text-white transition-colors">
-                <Mail size={18} />
-                <span>contato@premiumauto.com</span>
-              </a>
             </div>
           </div>
 
@@ -36,13 +32,6 @@ export default function Footer() {
                 className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900                        transition-all" 
               >
                 <Instagram size={20} />
-              </a>
-          
-              <a
-                href="#"
-                className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900                        transition-all"
-              >
-                <Facebook size={20} />
               </a>
             </div>
           </div>
