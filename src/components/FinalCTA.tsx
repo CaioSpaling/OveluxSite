@@ -33,7 +33,7 @@ export default function FinalCTA() {
       className="relative py-40 px-6 overflow-hidden"
     >
       <div
-        className="absolute inset-0 bg-cover bg-center md:bg-[center_70%]"
+        className="absolute inset-0 bg-cover bg-[center_60%] md:bg-[center_70%]"
         style={{
           backgroundImage: `url(${finalCTAImage})`,
         }}
