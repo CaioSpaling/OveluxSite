@@ -126,27 +126,55 @@ export default function Gallery() {
 
         {/* CORREÇÃO: Removido aspect-square e ajustado o grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {media.map((item, index) => (
-            <div
-              key={index}
-              ref={(el) => (itemsRef.current[index] = el)}
-              className={`relative overflow-hidden group cursor-pointer h-48 md:h-64 lg:h-80
-                transition-all duration-700
-                ${visibleItems[index] ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-            >
-              {item.type === 'image' ? (
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              ) : (
-                <VideoPlayer src={item.src} />
-              )}
+          {media.map((item, index) => {
+            let orderClass = '';
+            switch (item.alt) {
+              case 'Porsche Ovelux':
+                orderClass = 'order-1';
+                break;
+              case 'Civic':
+                orderClass = 'order-2';
+                break;
+              case 'M3 Ovelux':
+                orderClass = 'order-5 md:order-3';
+                break;
+              case 'Ram':
+                orderClass = 'order-3 md:order-4';
+                break;
+              case 'Camaro Ovelux':
+                orderClass = 'order-4 md:order-5';
+                break;
+              case 'Volvo':
+                orderClass = 'order-6';
+                break;
+            }
 
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
-            </div>
-          ))}
+            return (
+              <div
+                key={index}
+                ref={(el) => (itemsRef.current[index] = el)}
+                className={`relative overflow-hidden group cursor-pointer h-48 md:h-64 lg:h-80
+                transition-all duration-700
+                ${
+                  visibleItems[index]
+                    ? 'opacity-100 scale-100'
+                    : 'opacity-0 scale-95'
+                } ${orderClass}`}
+              >
+                {item.type === 'image' ? (
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                ) : (
+                  <VideoPlayer src={item.src} />
+                )}
+
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
