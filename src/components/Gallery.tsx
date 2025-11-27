@@ -17,8 +17,8 @@ interface Media {
 const media: Media[] = [
   {
     type: 'video',
-    src: videoCamaro,
-    alt: 'Camaro Ovelux',
+    src: videoPorsche,
+    alt: 'Porsche Ovelux',
   },
   {
     type: 'image',
@@ -37,8 +37,8 @@ const media: Media[] = [
   },
   {
     type: 'video',
-    src: videoPorsche,
-    alt: 'Porsche Ovelux',
+    src: videoCamaro,
+    alt: 'Camaro Ovelux',
   },
   {
     type: 'image',
