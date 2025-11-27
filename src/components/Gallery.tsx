@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
-// New imports from Midia folder
-import imageCivic from '../../Midia/Civic.jpeg';
-import videoM3 from '../../Midia/M3Ovelux.mp4';
-import imageSW4 from '../../Midia/SW4.jpg';
-import videoSW4 from '../../Midia/SW4Ovelux.mp4';
-import videoTracker from '../../Midia/TrackerOvelux.mp4';
-import imageVolvo from '../../Midia/Volvo.jpg';
+// New imports from assets folder
+import imageCivic from '../assets/Civic.jpeg';
+import videoM3 from '../assets/M3Ovelux.mp4';
+import imageRam from '../assets/Ram.jpeg';
+import videoPorsche from '../assets/PorscheOvelux.mp4';
+import videoCamaro from '../assets/CamaroOvelux.mp4';
+import imageVolvo from '../assets/Volvo.jpg';
 
 interface Media {
   type: 'image' | 'video';
@@ -18,8 +18,8 @@ interface Media {
 const media: Media[] = [
   {
     type: 'video',
-    src: videoTracker,
-    alt: 'Tracker Ovelux',
+    src: videoCamaro,
+    alt: 'Camaro Ovelux',
     layout: 'md:col-span-1 md:row-span-2',
   },
   {
@@ -36,14 +36,14 @@ const media: Media[] = [
   },
   {
     type: 'image',
-    src: imageSW4,
-    alt: 'SW4',
+    src: imageRam,
+    alt: 'Ram',
     layout: 'md:col-span-1 md:row-span-1',
   },
   {
     type: 'video',
-    src: videoSW4,
-    alt: 'SW4 Ovelux',
+    src: videoPorsche,
+    alt: 'Porsche Ovelux',
     layout: 'md:col-span-1 md:row-span-1',
   },
   {
