@@ -19,10 +19,6 @@ export default function Footer() {
                 <Phone size={18} />
                 <span>(19) 99683-4667 </span>
               </a>
-              <a href="mailto:contato@premiumauto.com" className="flex items-center gap-2 hover:text-white transition-colors">
-                <Mail size={18} />
-                <span>contato@premiumauto.com</span>
-              </a>
             </div>
           </div>
 
