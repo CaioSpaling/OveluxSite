@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Sparkles, Droplet, Wind, Shield, Gem, Star } from 'lucide-react';
+import { Sparkles, Droplet, Wind } from 'lucide-react';
 
 const services = [
   {
