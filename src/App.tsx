@@ -9,17 +9,6 @@ import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 
- const removeFloating = () => {
-
-  document.querySelectorAll('[style="position: fixed"][style="bottom: 1rem"][style="right: 1rem"][style="z-index: 2147483647"]').forEach(el => el.remove());
-
-};
-
-removeFloating();
-
-const observer = new MutationObserver(removeFloating);
-
-observer.observe(document.body, { childList: true, subtree: true });
 
 function App() {
   return (
